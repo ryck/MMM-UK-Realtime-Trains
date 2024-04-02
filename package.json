@@ -1,30 +1,30 @@
 {
-	"name": "MMM-UK-Realtime-Trains",
-	"version": "1.0.0",
-	"description": "MagicMirror 2 module to get arrivals predictions to bus stops from RTT.",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ryck/MMM-UK-Realtime-Trains"
-	},
-	"keywords": [
-		"magic mirror",
-		"smart mirror",
-		"transport",
-		"london",
-		"underground",
-		"TfL",
-		"module"
-	],
-	"author": "Nigel Daniels",
-	"contributors": [
-		"https://github.com/ryck/MMM-UK-Realtime-Trains/graphs/contributors"
-	],
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/ryck/MMM-UK-Realtime-Trains/issues"
-	},
-	"homepage": "https://github.com/ryck/MMM-UK-Realtime-Trains#readme",
-	"dependencies": {
-		"request": "latest"
-	}
+  "name": "MMM-UK-Realtime-Trains",
+  "version": "1.1.0",
+  "description": "MagicMirror 2 module to get arrivals predictions to bus stops from RTT.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryck/MMM-UK-Realtime-Trains"
+  },
+  "keywords": [
+    "magic mirror",
+    "smart mirror",
+    "transport",
+    "london",
+    "underground",
+    "TfL",
+    "module"
+  ],
+  "author": "Nigel Daniels",
+  "contributors": [
+    "https://github.com/ryck/MMM-UK-Realtime-Trains/graphs/contributors"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ryck/MMM-UK-Realtime-Trains/issues"
+  },
+  "homepage": "https://github.com/ryck/MMM-UK-Realtime-Trains#readme",
+  "dependencies": {
+    "axios": "^1.6.8"
+  }
 }

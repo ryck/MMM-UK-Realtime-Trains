@@ -7,45 +7,43 @@
  */
 
 var NodeHelper = require("node_helper");
-var request = require("request");
+var axios = require("axios");
 
 module.exports = NodeHelper.create({
-	start: function () {
-		console.log("MMM-UK-Realtime-Trains helper started...");
-	},
-	/* getTimetable()
-	 * Requests new data from RTT API.
-	 * Sends data back via socket on succesfull response.
-	 */
-	getTimetable: function (url, config) {
-		var self = this;
-		var retry = true;
+  start: function () {
+    console.log("MMM-UK-Realtime-Trains helper started...");
+  },
+  /* getTimetable()
+   * Requests new data from RTT API.
+   * Sends data back via socket on succesfull response.
+   */
+  getTimetable: async function (url, config) {
+    var self = this;
 
-		request(
-			{
-				url: url,
-				method: "GET",
-				auth: {
-					user: config.username,
-					pass: config.password,
-					sendImmediately: false
-				}
-			},
-			function (error, response, body) {
-				// Lets convert the body into JSON
-				var result = JSON.parse(body);
-				if (!error && response.statusCode === 200) {
-					self.sendSocketNotification("RTT_DATA", { data: result, url: url });
-				} else {
-					self.sendSocketNotification("RTT_DATA", { data: null, url: url });
-				}
-			}
-		);
-	},
-	//Subclass socketNotificationReceived received.
-	socketNotificationReceived: function (notification, payload) {
-		if (notification === "GET_RTT_DATA") {
-			this.getTimetable(payload.url, payload.config);
-		}
-	}
+    const { data, status, statusText } = await axios.get(url, {
+      auth: {
+        username: config.username,
+        password: config.password,
+      },
+    });
+    if (status === 200) {
+      if (statusText === "error") {
+        self.sendSocketNotification("RTT_DATA", { data: null, url });
+      } else {
+        self.sendSocketNotification("RTT_DATA", {
+          data,
+          url,
+        });
+      }
+    } else {
+      self.sendSocketNotification("RTT_DATA", { data: null, url });
+    }
+  },
+
+  //Subclass socketNotificationReceived received.
+  socketNotificationReceived: function (notification, payload) {
+    if (notification === "GET_RTT_DATA") {
+      this.getTimetable(payload.url, payload.config);
+    }
+  },
 });

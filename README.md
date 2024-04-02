@@ -41,7 +41,7 @@ Here is an example of an entry in `config.js`
 
 ## Dependencies
 
-- [request](https://www.npmjs.com/package/request) (installed via `npm install`)
+- [axios](https://www.npmjs.com/package/axios) (installed via `npm install`)
 
 ## Thanks To...
 
